@@ -1,0 +1,16 @@
+version: "1"
+
+services:
+  dotnet:
+    container_name: HienShopApi
+   
+    build: 
+      context: ./HienShopApi
+      dockerfile: Dockerfile
+
+    command: ["dotnet", "HienShopApi.dll"]
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - .:/src
