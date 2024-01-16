@@ -1,15 +1,16 @@
-FROM node:20.9.0
+FROM node:20
 
+# Set the working directory
+RUN mkdir /app
 WORKDIR /app
 
-COPY package*.json .
+# Copy the package.json and package-lock.json files to the container
+COPY package*.json ./
 
-COPY . .
+# Copy the rest of the application files to the container
+ADD . .
 
+# Install dependencies
 RUN npm install
 
-RUN npm run build 
-
-EXPOSE 4000
-
-CMD ["npm" , "run" , "start"]
+EXPOSE 3000

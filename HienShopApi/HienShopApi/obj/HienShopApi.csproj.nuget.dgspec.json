@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ShopDotnet8\\HienShopApi\\HienShopApi\\HienShopApi.csproj": {}
+    "D:\\ShopDotnet8\\ShopProject\\HienShopApi\\HienShopApi\\HienShopApi.csproj": {}
   },
   "projects": {
-    "D:\\ShopDotnet8\\HienShopApi\\HienShopApi\\HienShopApi.csproj": {
+    "D:\\ShopDotnet8\\ShopProject\\HienShopApi\\HienShopApi\\HienShopApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ShopDotnet8\\HienShopApi\\HienShopApi\\HienShopApi.csproj",
+        "projectUniqueName": "D:\\ShopDotnet8\\ShopProject\\HienShopApi\\HienShopApi\\HienShopApi.csproj",
         "projectName": "HienShopApi",
-        "projectPath": "D:\\ShopDotnet8\\HienShopApi\\HienShopApi\\HienShopApi.csproj",
+        "projectPath": "D:\\ShopDotnet8\\ShopProject\\HienShopApi\\HienShopApi\\HienShopApi.csproj",
         "packagesPath": "C:\\Users\\AD\\.nuget\\packages\\",
-        "outputPath": "D:\\ShopDotnet8\\HienShopApi\\HienShopApi\\obj\\",
+        "outputPath": "D:\\ShopDotnet8\\ShopProject\\HienShopApi\\HienShopApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AD\\AppData\\Roaming\\NuGet\\NuGet.Config",

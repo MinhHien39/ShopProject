@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Oflka6/z+Kn8SBwAsQd0ZbEougZgVFKyS+PeBilUWCs53/0Rv84tODqvzi51giUR4fWrNdlKsrGtRncwoCr2SA==",
+  "dgSpecHash": "80QKiMOZqwksxv3p/AcvLi2GROattnoDb6caBLpNv0vR9uGJ6lBUF5A5+VjE+Zhndvb+WDDSFq5ZdkJ5KPGibg==",
   "success": true,
-  "projectFilePath": "D:\\ShopDotnet8\\HienShopApi\\HienShopApi\\HienShopApi.csproj",
+  "projectFilePath": "D:\\ShopDotnet8\\ShopProject\\HienShopApi\\HienShopApi\\HienShopApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AD\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\AD\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

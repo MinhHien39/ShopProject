@@ -1,8 +1,9 @@
-version: "1.0"
+version: "3"
 
 services:
-  client-dev:
-    build: 
+  frontend:
+    container_name: my-app
+    build:
       context: .
       dockerfile: Dockerfile
     ports:
@@ -10,3 +11,4 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    command: npm run dev
