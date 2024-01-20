@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
-interface Category {
-  categoryId: number;
-  categoryName: string;
-  categoryDescription: string;
-}
-export default function Home() {
+"use client"
 
-  return <h1>Hello asd World</h1>;
-}
+// eslint-disable-next-line @next/next/no-async-client-component
+const CategoryPage = async () => { 
+  console.log("Check Call API");
+  return(
+    <div>
+      
+      
+    </div>
+    
+  )
+};
+export default CategoryPage;
