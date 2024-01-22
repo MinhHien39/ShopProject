@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins",
-        builder => builder.WithOrigins("http://localhost:3000")  // Specify allowed origins
+        builder => builder.AllowAnyOrigin()  // Specify allowed origins
                          .AllowAnyMethod()
                          .AllowAnyHeader());
 });
@@ -23,6 +23,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 
 var app = builder.Build();
+app.UseCors("AllowSpecificOrigins");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -38,3 +39,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

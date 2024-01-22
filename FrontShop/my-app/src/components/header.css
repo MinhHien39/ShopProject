@@ -1,0 +1,19 @@
+.nav-bar{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  
+  
+}
+.img-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: flex-start;
+}
+.input-search{
+  align-content: center;
+  list-style: none;
+  justify-content: space-between;
+  
+}

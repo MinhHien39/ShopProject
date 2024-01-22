@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
-export const metadata : Metadata = {
-  title : {
+export const metadata: Metadata = {
+  title: {
     absolute: "",
     default: "NextJs . Tutorial",
-    template:" ",
+    template: " ",
   },
-  description:"Generate by NextJs",
+  description: "Generate by NextJs",
 };
 export default function RootLayout({
   children,
@@ -15,16 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        {/* <header style={{ backgroundColor: "lightblue", padding: "1rem" }}>
-          <p>Header</p>
-        </header> */}
-        
+      <body>      
         {children}
+        
       </body>
-      {/* <footer
-        style={{ backgroundColor: "ghostwhite", padding: "1rem" }}
-      >Footer</footer> */}
     </html>
   );
 }

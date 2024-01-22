@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HienShopApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+466fedc8dcac494c4befbd4c62287499786ee65a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4dc3ddb6cea635e9475fa405cff0b994e7a8f745")]
 [assembly: System.Reflection.AssemblyProductAttribute("HienShopApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HienShopApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
