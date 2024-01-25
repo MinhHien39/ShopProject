@@ -1,0 +1,19 @@
+@tailwind base;
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-item {
+  width: 25%;
+  margin: 10px;
+}
+
+.product-image {
+  width: 100%;
+}
+
+.product-info {
+  padding: 10px;
+}

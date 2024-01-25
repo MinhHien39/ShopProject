@@ -1,41 +1,63 @@
-//import ListCategory from "./categories/page";
-
+"use client"
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import ListCategory from "./categories/page";
+import "@/app/globals.css";
+import { useEffect, useState } from "react";
+import ListProduct from "./products/page";
 
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
+  categoryId: number;
+  imageUrl: string;
+}
 interface Item {
+  categoryId: number;
   categoryName: string;
   categoryDescription: string;
 }
-const CategoryPage = async () => {
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch("https://localhost:7026/api/Category", {
-  //       method: "GET",
-  //       cache: "no-store",
-  //       mode: "no-cors",
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error("API request failed");
-  //     }
-  //     const data = await response.json();
-  //     console.log("API is Called ", data);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
+
+const CategoryPage = () => {
+  const [selectedCategory, setSelectedCategory] = useState<Item | null>(null);
+  const [products, setProducts] = useState<Product []>([]);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  // useEffect(() => {
+  //   console.log("Fetching Category Successfully");
+  //   if (selectedCategory) {
+  //     fetchProducts(selectedCategory.categoryId);
+      
   //   }
-  // };
-  console.log("Check Call API");
+  // }, [selectedCategory]);
+
   return (
-    <div>
-      <div className="flex justify-between items-center ">
+    <>
+      <div>
         <Header />
       </div>
-      <div className="flex">
-        <ListCategory />
+      <div className="container">
+        <div className="left-main">
+          <ListCategory
+            onCategorySelected={(category) => setSelectedCategory(category)}
+          />
+        </div>
+        <div className="center-main">
+          <ListProduct categorySelected={selectedCategory}
+          />
+        </div>
       </div>
-      <div></div>
-    </div>
+
+      {/* <div>
+        <Footer />
+      </div> */}
+    </>
   );
 };
+
 export default CategoryPage;

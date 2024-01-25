@@ -1,19 +1,32 @@
 .nav-bar{
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  flex-direction: row;
-  
-  
+
+  background-color: aliceblue;
 }
 .img-container{
   display: flex;
   justify-content: center;
   align-items: center;
-  align-content: flex-start;
+  width: 100px;
+  height: auto;
 }
 .input-search{
-  align-content: center;
-  list-style: none;
-  justify-content: space-between;
-  
+  width: 300px;
+  height: 30px;
+}
+.nav-bar-login{
+  background-color: #000;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+.nav-bar-login button:hover {
+  background-color: #ccc;
+  color: #000;
 }

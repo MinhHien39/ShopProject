@@ -31,6 +31,18 @@ namespace ShopApi.Controllers
             }
             return Ok(product);
         }
+
+        [HttpGet("categoryId")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetByCategoryId(int categoryId)
+        {
+            // Lấy dữ liệu sản phẩm theo categoryId
+            var products = await _dataContext.Products
+                .Where(product => product.CategoryId == categoryId)
+                .ToListAsync();
+
+            // Trả về dữ liệu sản phẩm
+            return Ok(products);
+        }
         [HttpPost]
         public async Task<ActionResult<List<Product>>> AddProduct(Product product)
         {

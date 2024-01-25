@@ -1,37 +1,35 @@
 /* eslint-disable @next/next/no-async-client-component */
 "use client";
 import React, { useState, useEffect } from "react";
+import "@/app/categories/category.css";
+
 interface Item {
   categoryId: number;
   categoryName: string;
   categoryDescription: string;
 }
 
-const ListCategory: React.FC = () => {
+const ListCategory: React.FC<{
+  onCategorySelected: (category: Item) => void;
+}> = ({ onCategorySelected }) => {
+  const [selectedCategory, setSelectedCategory] = useState<Item | null>(null);
   const [categories, setCategories] = useState<Item[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const list = [];
+
   const fetchCategories = async () => {
     try {
       const response = await fetch("https://localhost:8080/api/Category", {
         method: "GET",
       });
-      const category = await response.json();
-      console.log(category);
 
       if (!response.ok) {
-        console.log(response);
-        list.push(response);
-        console.log("Second", list.length);
-        // throw new Error('Failed to fetch data');
+        throw new Error("Failed to fetch categories");
       }
-
-      const data = (await response.json()) as Item[];
-      console.log("Data Json", data);
+      const data = await response.json();
       setCategories(data);
     } catch (error) {
-      console.log(String(error));
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -40,12 +38,24 @@ const ListCategory: React.FC = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
+
   return (
     <ul>
-      {categories.map((category) => (
-        <li key={category.categoryId}>{category.categoryName}</li>
+      {categories.map((itemCategory) => (
+        <li
+          key={itemCategory.categoryId}
+          onClick={() => onCategorySelected(itemCategory)}
+          className={
+            selectedCategory?.categoryId === itemCategory.categoryId
+              ? "selected"
+              : ""
+          }
+        >
+          {itemCategory.categoryName}
+        </li>
       ))}
     </ul>
   );
 };
+
 export default ListCategory;
