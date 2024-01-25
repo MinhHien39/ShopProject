@@ -3,17 +3,17 @@
 import React, { useState, useEffect } from "react";
 import "@/app/categories/category.css";
 
-interface Item {
+export interface Category {
   categoryId: number;
   categoryName: string;
   categoryDescription: string;
 }
 
 const ListCategory: React.FC<{
-  onCategorySelected: (category: Item) => void;
+  onCategorySelected: (category: Category) => void;
 }> = ({ onCategorySelected }) => {
-  const [selectedCategory, setSelectedCategory] = useState<Item | null>(null);
-  const [categories, setCategories] = useState<Item[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 

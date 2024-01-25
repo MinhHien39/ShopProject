@@ -15,26 +15,18 @@ interface Product {
   categoryId: number;
   imageUrl: string;
 }
-interface Item {
+export interface Category {
   categoryId: number;
   categoryName: string;
   categoryDescription: string;
 }
 
 const CategoryPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<Item | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [products, setProducts] = useState<Product []>([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
-
-  // useEffect(() => {
-  //   console.log("Fetching Category Successfully");
-  //   if (selectedCategory) {
-  //     fetchProducts(selectedCategory.categoryId);
-      
-  //   }
-  // }, [selectedCategory]);
 
   return (
     <>
@@ -48,7 +40,7 @@ const CategoryPage = () => {
           />
         </div>
         <div className="center-main">
-          <ListProduct categorySelected={selectedCategory}
+          <ListProduct categorySelected = {selectedCategory}
           />
         </div>
       </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "@/app/products/product.css";
 import { useRouter } from "next/router";
 import DetailProduct from "./[id]/page";
+import { Category } from "../categories/page";
 interface Product {
   productId: number;
   productName: string;
@@ -12,47 +13,31 @@ interface Product {
   categoryId: number;
   imageUrl: string;
 }
-interface Category {
-  categoryId: number;
-  categoryName: string;
-  categoryDescription: string;
-}
 
-const ListProduct: React.FC<{ categorySelected: any }> = (categorySelected) => {
+
+const ListProduct: React.FC<{ categorySelected: Category | null}> = ({categorySelected}) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const id = categorySelected;
+  const getId = categorySelected?.categoryId;
+  
+  
+  const fetchProduct = async (getId : number | undefined) => {
+    console.log(`Fetching`, getId);
 
-  // const handleProductClick = (product: Product) => {
-  //   router.push(`/detail-product/${product.productId}`);
-  // };
-  const fetchProduct = async (id: any) => {
-    console.log(`Fetching`, id);
-    let url = `https://localhost:8080/api/Product`;
-    if (typeof id !== "undefined" && typeof id === "number") {
-      console.log(`Fetching ASD `, url);
-      url += `/categoryId?categoryId=${id}`;
-      
-    }
     try {
-      const response = await fetch(url, { method: "GET" });
+      const response = await fetch(
+        `https://localhost:8080/api/Product/categoryId?categoryId=${getId}`,
+        { method: "GET" }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch categories");
       }
-
-      
       const data = await response.json();
-      console.log("Producdt", data);
-      if(data.categoryId === id){
-        console.log("Fetch Product " , data.categoryId);
-        setProducts(data);
-      }
-      
-
-      // const data = await response.json();
-      // setProducts(data);
+      console.log("Product", data);
+      console.log("Fetch Product ", data.categoryId);
+      setProducts(data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -63,7 +48,7 @@ const ListProduct: React.FC<{ categorySelected: any }> = (categorySelected) => {
   useEffect(() => {
     console.log("category", categorySelected);
     if (categorySelected) {
-      fetchProduct(categorySelected);
+      fetchProduct(getId);
     }
   }, [categorySelected]);
 
