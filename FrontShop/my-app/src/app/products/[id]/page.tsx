@@ -1,6 +1,7 @@
-'use client'
-import { useParams } from "next/navigation";
+"use client";
+import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import "@/app/products/[id]/productdetail.css";
 
 interface Product {
   productId: number;
@@ -13,49 +14,52 @@ interface Product {
 }
 
 const DetailProduct: React.FC<{}> = () => {
-  const { productId } = useParams<{ productId: string }>();
-  const [product, setProduct] = useState<Product | null>(null); // Store single product
+  const params = useParams();
+  const getProductId = params.id;
+  console.log("Product Id From ListProduct", getProductId);
+  const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-
   useEffect(() => {
+    console.log("Get Product Id ", getProductId);
     const fetchProduct = async () => {
-      try {
-        const response = await fetch(`https://localhost:8080/api/Product/${productId}` , {
-          method: 'GET',
-        });
-        if (!response.ok) {
-          //throw new Error("Failed to fetch product");
+      const response = await fetch(
+        `https://localhost:8080/api/Product/${getProductId}`,
+        {
+          method: "GET",
         }
-        const data = await response.json();
-        setProduct(data); // Set the fetched product
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
+      );
+      if (!response.ok) {
+        console.log("Error fetching Product");
+        return;
       }
+      const data = await response.json();
+      setProduct(data);
     };
-
     fetchProduct();
-  }, [productId]);
-
+  });
   return (
-    <div>
-      {isLoading ? (
-        <p>Loading product...</p>
-      ) : error ? (
-        <p>Error: {error.message}</p>
-      ) : product ? (
-        <div>
-          {/* Display product details using product.property */}
-          <h2>{product.productName}</h2>
-          <p>{product.productDescription}</p>
-          {/* ... other product details ... */}
+    <>
+      <div className="product-detail">
+        <div className="product-image">
+          <img src={product?.imageUrl} alt={product?.productName} />
         </div>
-      ) : (
-        <p>Product not found</p>
-      )}
-    </div>
+        <div className="product-info">
+          <h2>{product?.productName}</h2>
+          <p>{product?.productDescription}</p>
+          <p>{product?.price}</p>
+          <p>{product?.quantity}</p>
+        </div>
+        <div className="product-action">
+            <button type="button" onClick={() => {}}>
+              Add Your Favorite
+            </button>
+            <button type="button" onClick={() => {}}>
+              Buy
+            </button>
+          </div>
+      </div>
+    </>
   );
 };
 
