@@ -1,20 +1,45 @@
 @tailwind base;
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
 }
 
-.product-item {
-  width: 25%;
-  margin: 10px;
+.card-image {
+  height: 200px;
+  object-fit: cover;
 }
 
-.product-image {
-  width: 250px;
-  height: 250px;
+.card-info {
+  margin-top: 10px;
 }
 
-.product-info {
-  padding: 10px;
+.card-footer {
+  justify-content: space-between;
+}
+
+/* Màu sắc */
+.card {
+  background-color: #fff;
+  color: #333;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-price {
+  color: #ff0000;
+}
+
+/* Hiệu ứng */
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -19,9 +19,9 @@ interface Product {
 const ListProduct: React.FC<{ categorySelected: Category | null }> = ({
   categorySelected,
 }) => {
-  
   //const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const getId = categorySelected?.categoryId;
@@ -32,13 +32,36 @@ const ListProduct: React.FC<{ categorySelected: Category | null }> = ({
         `https://localhost:8080/api/Product/categoryId?categoryId=${getId}`,
         { method: "GET" }
       );
+      const allItem = await fetch(`https://localhost:8080/api/Product`, {
+        method: "GET",
+      });
+
       if (!response.ok) {
         throw new Error("Failed to fetch categories");
       }
       const data = await response.json();
+      const dataAll = await allItem.json();
       console.log("Product", data);
       console.log("Fetch Product ", data.categoryId);
       setProducts(data);
+      setAllProducts(dataAll);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const fetchAllProduct = async () => {
+    try {
+      const response = await fetch(`https://localhost:8080/api/Product`, {
+        method: "GET",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch categories");
+      }
+      const data = await response.json();
+      setAllProducts(data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -46,24 +69,48 @@ const ListProduct: React.FC<{ categorySelected: Category | null }> = ({
     }
   };
   useEffect(() => {
+    fetchAllProduct();
     console.log("category", categorySelected);
     if (categorySelected) {
       fetchProduct(getId);
+      
     }
   }, [categorySelected]);
   return (
     <>
-      {isLoading ? (
-        <p>Loading products...</p>
+      {categorySelected === null ? (
+        <div className="product-list">
+          {allProducts.map((item) => (
+            <div className="product-item">
+              <Link
+                href={`/products/${item?.productId}`}
+                className="product-image"
+              >
+                <img src={item.imageUrl} alt={item.productName} />
+              </Link>
+              <div className="product-info">
+                <h2>{item.productName}</h2>
+                <p>{item.productDescription}</p>
+                {/* <p>Price: {product.price}</p>
+                <p>Quantity: {product.quantity}</p> */}
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
         <div className="product-list">
           {products.map((product) => (
             <div
               key={product.productId}
               className="product-item"
-              onClick={() =>console.log("clickItemProduct " , product.productId)}
+              onClick={() =>
+                console.log("clickItemProduct ", product.productId)
+              }
             >
-              <Link href={`/products/${product.productId}`} className="product-image">
+              <Link
+                href={`/products/${product.productId}`}
+                className="product-image"
+              >
                 <img src={product.imageUrl} alt={product.productName} />
               </Link>
               <div className="product-info">

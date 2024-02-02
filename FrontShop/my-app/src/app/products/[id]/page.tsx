@@ -2,6 +2,8 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import "@/app/products/[id]/productdetail.css";
+import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 
 interface Product {
   productId: number;
@@ -40,24 +42,37 @@ const DetailProduct: React.FC<{}> = () => {
   });
   return (
     <>
-      <div className="product-detail">
-        <div className="product-image">
-          <img src={product?.imageUrl} alt={product?.productName} />
-        </div>
-        <div className="product-info">
-          <h2>{product?.productName}</h2>
-          <p>{product?.productDescription}</p>
-          <p>{product?.price}</p>
-          <p>{product?.quantity}</p>
-        </div>
-        <div className="product-action">
-            <button type="button" onClick={() => {}}>
-              Add Your Favorite
-            </button>
-            <button type="button" onClick={() => {}}>
-              Buy
-            </button>
-          </div>
+      <div className="container">
+        {product && (
+          <Card
+            shadow="sm"
+            isPressable
+            onPress={() => console.log("item pressed")}
+          >
+            <CardBody className="d-flex justify-content-center">
+              <Image
+                shadow="sm"
+                radius="lg"
+                width="350px"
+                height="250px"
+                alt={product.productName}
+                className="w-full object-cover border border-gray-300 justify-content-center"
+                src={product.imageUrl}
+              />
+            </CardBody>
+            <CardBody className="p-0">
+              <b>{product.productName}</b>
+              <p className="text-default-500 mt-2">{product.price}</p>
+              <p className="text-sm text-gray-500 mt-2">
+                {product.productDescription}
+              </p>
+            </CardBody>
+            <CardFooter className="text-small justify-between">
+              <p>Amout: {product.quantity}</p>
+              
+            </CardFooter>
+          </Card>
+        )}
       </div>
     </>
   );

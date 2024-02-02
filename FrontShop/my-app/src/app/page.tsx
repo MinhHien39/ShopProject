@@ -23,9 +23,7 @@ export interface Category {
 
 const CategoryPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
-  const [products, setProducts] = useState<Product []>([]);
 
-  const [isLoading, setIsLoading] = useState(false);
 
 
   return (
@@ -45,9 +43,9 @@ const CategoryPage = () => {
         </div>
       </div>
 
-      {/* <div>
+      <div className="footer">
         <Footer />
-      </div> */}
+      </div>
     </>
   );
 };

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +23,7 @@ const Header: React.FC = () => {
         />
 
         <Link href="/login">
+          <FontAwesomeIcon icon="heart" size="2x" color="#ff0000" />
           <button className="nav-bar-login">Login</button>
         </Link>
       </div>
